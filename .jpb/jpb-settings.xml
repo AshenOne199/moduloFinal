@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaPluginProjectSettings" reExcludeTablePrefixes="" reExcludeColumnPrefixes="" />
+  <component name="ReverseEngineeringSettings">
+    <database-infos>
+      <database-info dbms-id="oracle">
+        <mapping-types>
+          <mapping-type sql-type="VARCHAR2" java-class="java.lang.String" />
+        </mapping-types>
+      </database-info>
+    </database-infos>
+  </component>
+</project>

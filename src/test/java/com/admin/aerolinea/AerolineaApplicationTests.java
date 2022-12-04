@@ -1,4 +1,4 @@
-package com.admin.aerolinea.aerolinea;
+package com.admin.aerolinea;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
