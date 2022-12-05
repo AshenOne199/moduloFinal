@@ -1,17 +1,12 @@
 package com.admin.aerolinea.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "AIPORT")
-public class Aiport {
+public class Airport {
 
     @Id
     @Column(name = "AIRPORTCODE", nullable = false)
