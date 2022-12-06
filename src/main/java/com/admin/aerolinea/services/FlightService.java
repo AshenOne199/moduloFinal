@@ -14,8 +14,5 @@ public class FlightService {
         this.flightRepository = flightRepository;
     }
 
-    public String getNumeroVuelo(String airlineCode){
-        return airlineCode;
-    }
-
 }
+

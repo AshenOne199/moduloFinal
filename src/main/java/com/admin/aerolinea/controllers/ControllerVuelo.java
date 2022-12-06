@@ -1,55 +1,75 @@
 package com.admin.aerolinea.controllers;
 
-import com.admin.aerolinea.entity.Airline;
+import com.admin.aerolinea.entity.AirportType;
+import com.admin.aerolinea.repository.IFlightRepository;
 import com.admin.aerolinea.services.AirlineService;
+import com.admin.aerolinea.services.AirportService;
+import com.admin.aerolinea.services.AirportTypeService;
 import com.admin.aerolinea.services.FlightService;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class ControllerVuelo {
 
-    Logger logger = LoggerFactory.getLogger(ControllerVuelo.class);
-
     @Autowired
     private AirlineService airlineService;
 
     @Autowired
-    private FlightService flightService;
+    private AirportService airportService;
 
-    @GetMapping("nuevoVuelo/aerolinea")
-    public Optional<Object[]> habilitarAerolinea(){
-        return airlineService.getAirlineNames();
-    }
+    @Autowired
+    private AirportTypeService airportTypeService;
+
+    @Autowired
+    private IFlightRepository flightRepository;
 
     @GetMapping("nuevoVuelo/aerolineas")
-    public Map<String, Object> habilitarAerolineas(){
+    public Map<String, Object> enviarAerolineas(){
 
         Map<String, Object> result = new HashMap<>();
 
-        String idUltimaAerolinea = "";
-
-        logger.info("Ultimo id aerolinea:" + idUltimaAerolinea);
-
-        //int idFinal = Integer.parseInt(idUltimaAerolinea);
-
-        //idUltimaAerolinea = String.valueOf(idFinal);
-
-        result.put("codigo", "123");
-        result.put("airline", airlineService.getAirlines());
+        result.put("airlines", airlineService.getAirlines());
 
         return result;
     }
+
+    @GetMapping("nuevoVuelo/aeropuertos")
+    public Map<String, Object> enviarAeropuertos(){
+
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("airports", airportService.getAirports());
+
+        return result;
+    }
+
+    @GetMapping("nuevoVuelo/tiposAeropuertos")
+    public Map<String, Object> enviarTiposAeropuertos(){
+
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("airportTypes", airportTypeService.getAiportTypes());
+
+        return result;
+    }
+
+    @GetMapping("nuevoVuelo/vuelos")
+    public Map<String, Object> enviarVuelos(){
+
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("flights", flightRepository.findAll());
+
+        return result;
+    }
+
+
 
 
 

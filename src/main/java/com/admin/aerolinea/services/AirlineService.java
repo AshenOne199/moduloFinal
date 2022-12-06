@@ -18,11 +18,6 @@ public class AirlineService {
         this.airlineRepository = airlineRepository;
     }
 
-    //Metodos service
-    public Optional<Object[]> getAirlineNames(){
-        return airlineRepository.findAirlineName();
-    }
-
     public List<Airline> getAirlines(){
         return airlineRepository.findAll();
     }
