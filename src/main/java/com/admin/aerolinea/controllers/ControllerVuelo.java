@@ -17,6 +17,8 @@ import java.util.Map;
 @RequestMapping("/api")
 public class ControllerVuelo {
 
+    Logger logger = LoggerFactory.getLogger(ControllerVuelo.class);
+
     @Autowired
     private AirlineService airlineService;
 
@@ -68,6 +70,13 @@ public class ControllerVuelo {
 
 
         return result;
+    }
+
+    @GetMapping("nuevoVuelo/aerolineas")
+    public String recibirAerolinea(@RequestParam String nombreAerolinea){
+        logger.info("Aerolinea recibida" + nombreAerolinea);
+
+        return "Ok";
     }
 
 
