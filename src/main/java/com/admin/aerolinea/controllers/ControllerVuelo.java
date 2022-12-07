@@ -72,10 +72,9 @@ public class ControllerVuelo {
         return result;
     }
 
-    @GetMapping("nuevoVuelo/aerolineas")
-    public String recibirAerolinea(@RequestParam String nombreAerolinea){
-        logger.info("Aerolinea recibida" + nombreAerolinea);
-
+    @GetMapping("nuevoVuelo/aerolineas/nombre")
+    public String recibirAerolinea(@RequestParam String airlineName){
+        logger.info("Aerolinea recibida" + airlineName);
         return "Ok";
     }
 
