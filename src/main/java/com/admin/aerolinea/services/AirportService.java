@@ -24,4 +24,16 @@ public class AirportService {
     }
 
 
+    public List<String> getNameAirport(String idPlaceAirport) {
+        return airportRepository.findAirportNameByIdPlaceAiport(idPlaceAirport);
+    }
+
+
+    public List<String> getIdPlaceAirport() {
+        return airportRepository.findAllIdPlaceAirport();
+    }
+
+    public List<Airport> findAll() {
+        return airportRepository.findAll();
+    }
 }

@@ -22,5 +22,7 @@ public class AirlineService {
         return airlineRepository.findAll();
     }
 
-
+    public List<String> getIdPlace(String airlineCode) {
+        return airlineRepository.findByAirlineCodeIdPlace(airlineCode);
+    }
 }

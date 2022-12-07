@@ -4,6 +4,8 @@ import com.admin.aerolinea.repository.IFlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FlightService {
 
@@ -12,6 +14,10 @@ public class FlightService {
     @Autowired
     public FlightService(IFlightRepository flightRepository) {
         this.flightRepository = flightRepository;
+    }
+
+    public String getFlightNumber(String airlineCode){
+        return flightRepository.findByAirlineCode(airlineCode);
     }
 
 }

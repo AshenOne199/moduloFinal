@@ -17,7 +17,7 @@ public class FlightId implements Serializable {
 
 
     @Column(name = "FLIGHTNUMBER")
-    private String flightsegments;
+    private String flightNumber;
 
     @Column(name = "AIRLINECODEFK", nullable = false)
     private String airlineCode;
