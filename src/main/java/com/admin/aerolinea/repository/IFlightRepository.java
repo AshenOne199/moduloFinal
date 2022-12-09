@@ -13,4 +13,6 @@ public interface IFlightRepository extends JpaRepository<Flight, FlightId> {
 
     @Query(value = "SELECT MAX(f.flightId.flightNumber) FROM Flight f WHERE f.flightId.airlineCode = ?1")
     String findByAirlineCode(String airlineCode);
+
+
 }

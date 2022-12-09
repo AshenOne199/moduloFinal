@@ -11,4 +11,7 @@ import java.util.List;
 public interface IAirlineRepository extends JpaRepository<Airline, String> {
     @Query(value = "SELECT idPlaceAirlineFk FROM Airline WHERE airlineCode=?1")
     List<String> findByAirlineCodeIdPlace(String airlineCode);
+
+    @Query(value = "SELECT airlineCode FROM Airline WHERE airlineName=?1")
+    String findByAirlineNameAirlineCode(String airlineName);
 }

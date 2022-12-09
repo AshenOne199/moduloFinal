@@ -25,4 +25,8 @@ public class AirlineService {
     public List<String> getIdPlace(String airlineCode) {
         return airlineRepository.findByAirlineCodeIdPlace(airlineCode);
     }
+
+    public String getAirlineCode(String airlineName){
+        return airlineRepository.findByAirlineNameAirlineCode(airlineName);
+    }
 }

@@ -55,6 +55,18 @@ public class ControllerVuelo {
         return result;
     }
 
+    //Dado un airlineName retorna airlineCode de Airline
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/airlineName?airlineName=Avianca
+    @GetMapping("nuevoVuelo/aerolineas/airlineName")
+    public Map<String, Object> recibirAerolinea(@RequestParam String airlineName){
+        logger.info("Aerolinea recibida: [" + airlineName + "]");
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("airlineCode", airlineService.getAirlineCode(airlineName));
+
+        return result;
+    }
+
     //-------------------------------------------------------Avance 1---------------------------------------------------
     //Dado un airlineCode retorna flightNumber de Flight
     //http://localhost:8080/api/nuevoVuelo/aerolineas/airlineCode_flightNumber?airlineCode=W3
@@ -90,7 +102,7 @@ public class ControllerVuelo {
         logger.info("Pais recibido: [" + pais + "]");
 
         Map<String, Object> result = new HashMap<>();
-        result.put("idPlace", placeService.getIdPlace(pais));
+        result.put("idPlace", placeService.getIdPlaceByPais(pais));
 
         return result;
     }
