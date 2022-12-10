@@ -1,18 +1,17 @@
 package com.admin.aerolinea.controllers;
 
-import com.admin.aerolinea.entity.AirportType;
-import com.admin.aerolinea.repository.IFlightRepository;
-import com.admin.aerolinea.repository.IPlaceRepository;
+import com.admin.aerolinea.entity.*;
 import com.admin.aerolinea.services.*;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -42,6 +41,11 @@ public class ControllerVuelo {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private FlightSegmentService flightSegmentService;
+
+
 
     //Listar todas las aerolineas
     //http://localhost:8080/api/nuevoVuelo/aerolineas
@@ -230,6 +234,55 @@ public class ControllerVuelo {
 
         return result;
     }
+
+    //Post para crear Flight. Ej:
+    /*
+        {
+            "flightNumber":"129",
+            "airlineCode":"W3"
+        }
+    */
+    @Transactional
+    @PostMapping("insertFlight")
+    public ResponseEntity<?> insertFlight(@Valid @RequestBody FlightId flightId){
+
+        logger.info("RequestBody FlightId: " + flightId.toString());
+
+        Optional<Flight> newFlight = flightService.findById(flightId.getFlightNumber(), flightId.getAirlineCode());
+        if(newFlight.isEmpty()){
+            flightService.nuevoFlight(new FlightId(flightId.getFlightNumber(), flightId.getAirlineCode()));
+            return  ResponseEntity.status(HttpStatus.OK).body("Nuevo registro realizado");
+        }
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("El Id ya esta registrado");
+    }
+
+    //POST  para crear FlightSegment
+    //{
+    //    "flightSegmentId": {
+    //        "idSegment":"123",
+    //        "airlineCode":"123",
+    //        "flightNumber":"123",
+    //        "airportCodeDestino":"123"
+    //    },
+    //    "aiportCodeOrigen":"123"
+    //}
+    @Transactional
+    @PostMapping("insertFilghtSegment")
+    public ResponseEntity<?> insertFlightSegment(@Valid @RequestBody Flightsegment flightSegment){
+
+        logger.info("RequestBody FlightId: " + flightSegment.toString());
+
+        //Optional<Flightsegment> newFlight = flightSegmentService.findById(
+          //      new FlightSegmentId(flightSegment.getFlightSegmentId().getIdSegment(),
+            //                        flightSegment.getFlightSegmentId().getAirlineCode(),
+            //                        flightSegment.getFlightSegmentId().getFlightNumber(),
+               //                     flightSegment.getFlightSegmentId().getAirportCodeDestino()),
+                  //                  flightSegment.getAiportCodeOrigen());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("El Id ya esta registrado");
+    }
+
 
 
 
