@@ -36,4 +36,8 @@ public class AirportService {
     public List<Airport> findAll() {
         return airportRepository.findAll();
     }
+
+    public List<String> getAirportsByAirportName(String airportName) {
+        return airportRepository.findByAirportName(airportName);
+    }
 }

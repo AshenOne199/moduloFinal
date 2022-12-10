@@ -205,4 +205,32 @@ public class ControllerVuelo {
         return result;
     }
 
+    //Dado un AIPORTNAME  traer AIPORT
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/aiportName_airport?airportName=Lester B. Pearson International Airport
+    @GetMapping("nuevoVuelo/aerolineas/aiportName_airport")
+    public Map<String, Object> getAiports(@RequestParam String airportName){
+
+        logger.info("aiportName recibido: [" + airportName + "]");
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("aiports", airportService.getAirportsByAirportName(airportName));
+
+        return result;
+    }
+
+    //Dado un IDPLACE   traer PLACENAME de PLACE
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/idPLace_PlaceName?idPlace=CAN
+    @GetMapping("nuevoVuelo/aerolineas/idPLace_PlaceName")
+    public Map<String, Object> getPlaceName(@RequestParam String idPlace){
+
+        logger.info("idPlace: [" + idPlace + "]");
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("placeNames", placeService.getPlaceNames(idPlace));
+
+        return result;
+    }
+
+
+
 }

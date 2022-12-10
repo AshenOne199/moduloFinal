@@ -18,4 +18,7 @@ public interface IPlaceRepository extends JpaRepository<Place, String> {
 
     @Query(value = "SELECT p FROM Place p WHERE p.idPlace = ?1")
     List<Place> findAllById(String idPlace);
+
+    @Query(value = "SELECT placeName FROM Place WHERE idPlace = ?1")
+    List<String> findByPlacesNames(String idPlace);
 }

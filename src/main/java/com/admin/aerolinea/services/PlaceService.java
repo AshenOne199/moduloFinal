@@ -29,4 +29,8 @@ public class PlaceService {
     public  List<Place> getById(String idPlace) {
         return placeRepository.findAllById(idPlace);
     }
+
+    public List<String> getPlaceNames(String idPlace) {
+        return placeRepository.findByPlacesNames(idPlace);
+    }
 }
