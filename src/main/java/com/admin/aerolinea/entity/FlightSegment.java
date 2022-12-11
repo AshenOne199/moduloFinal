@@ -1,25 +1,27 @@
 package com.admin.aerolinea.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "FLIGHTSEGMENT")
-public class Flightsegment {
+public class FlightSegment {
 
     @EmbeddedId
     FlightSegmentId flightSegmentId;
 
     @Column(name = "AIRPORTCODEORIGENFK", nullable = false)
     private String aiportCodeOrigen;
+
+    @Column(name = "IDTRAYECTO", nullable = false)
+    private String idTrayecto;
 
 }

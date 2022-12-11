@@ -1,12 +1,12 @@
 package com.admin.aerolinea.services;
 
-import com.admin.aerolinea.entity.FlightId;
+import com.admin.aerolinea.entity.FlightSegment;
 import com.admin.aerolinea.entity.FlightSegmentId;
-import com.admin.aerolinea.entity.Flightsegment;
 import com.admin.aerolinea.repository.IFlightSegmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +19,24 @@ public class FlightSegmentService {
         this.flightSegmentRepository = flightSegmentRepository;
     }
 
-    //public Optional<Flightsegment> findById(FlightSegmentId flightSegmentId, String aiportCodeOrigen) {
-  //      return flightSegmentRepository.findById(flightSegmentId.getIdSegment(), flightSegmentId.getAirlineCode(), flightSegmentId.getFlightNumber(), flightSegmentId.getAirportCodeDestino(), aiportCodeOrigen);
-    //}
 
+    public Optional<FlightSegment> findByIds(FlightSegmentId flightSegmentId) {
+        return flightSegmentRepository.findIds(flightSegmentId.getIdSegment());
+    }
+
+    public FlightSegment nuevoSegmento(FlightSegment flightSegment) {
+        return flightSegmentRepository.save(flightSegment);
+    }
+
+    public List<String> findByAirportCode(String airportCode) {
+        return flightSegmentRepository.findByAiportCode(airportCode);
+    }
+
+    public List<String> findByAirportCodeAndIdTrayecto(String airportCode, String idTrayecto) {
+        return flightSegmentRepository.findByAiportCodeAndIdtrayecto(airportCode, idTrayecto);
+    }
+
+    public List<String> findByIdTrayecto(String idTrayecto) {
+        return flightSegmentRepository.findByIdTrayecto(idTrayecto);
+    }
 }
