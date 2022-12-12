@@ -39,4 +39,12 @@ public class FlightSegmentService {
     public List<String> findByIdTrayecto(String idTrayecto) {
         return flightSegmentRepository.findByIdTrayecto(idTrayecto);
     }
+
+    public String getSegmento() {
+        return  flightSegmentRepository.findIdSegmento();
+    }
+
+    public String getTrayecto() {
+        return flightSegmentRepository.findIdTrayecto();
+    }
 }

@@ -29,6 +29,16 @@ public class ControllerItirenario {
     @Autowired
     private ConnectionService connectionService;
 
+    @GetMapping("aeropuertos")
+    public Map<String, Object> getAllAiports(){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("aiports", airportService.getAllAirports());
+
+        return result;
+    }
+
+
     //Dado un AIPORTNAME  traer AIPORT
     //http://localhost:8080/api/nuevoVuelo/aerolineas/origen?airportName=Lester B. Pearson International Airport
     @GetMapping("nuevoVuelo/aerolineas/origen_destino")

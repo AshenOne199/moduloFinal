@@ -40,4 +40,12 @@ public class AirportService {
     public List<String> getAirportsByAirportName(String airportName) {
         return airportRepository.findByAirportName(airportName);
     }
+
+    public List<Airport> getAllAirports() {
+        return airportRepository.findAll();
+    }
+
+    public String getAirportCode(String airportName) {
+        return airportRepository.findAirportCode(airportName);
+    }
 }

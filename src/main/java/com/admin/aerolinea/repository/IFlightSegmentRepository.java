@@ -23,4 +23,9 @@ public interface IFlightSegmentRepository extends JpaRepository<FlightSegment, F
 
     @Query(value = "SELECT f FROM FlightSegment f WHERE f.idTrayecto = ?1")
     List<String> findByIdTrayecto(String idTrayecto);
+    @Query(value = "SELECT max(f.flightSegmentId.idSegment) FROM FlightSegment f")
+    String findIdSegmento();
+
+    @Query(value = "SELECT max(f.idTrayecto) FROM FlightSegment f")
+    String findIdTrayecto();
 }

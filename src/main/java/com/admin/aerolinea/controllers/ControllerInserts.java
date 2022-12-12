@@ -41,6 +41,7 @@ public class ControllerInserts {
             "airlineCode":"W3"
         }
     */
+    // api/insertFlight
     @Transactional
     @PostMapping("insertFlight")
     public ResponseEntity<?> insertFlight(@Valid @RequestBody FlightId flightId){
@@ -65,7 +66,7 @@ public class ControllerInserts {
     //POST  para crear FlightSegment
     /*
     {
-        "flightSegmentId": {
+            "flightSegmentId": {
                "idSegment":"XXX",
                 "airlineCode":"XXX",
                 "flightNumber":"XXX",

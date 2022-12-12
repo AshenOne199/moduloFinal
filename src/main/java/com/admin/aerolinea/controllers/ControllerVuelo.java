@@ -42,6 +42,8 @@ public class ControllerVuelo {
     @Autowired
     private PersonService personService;
 
+    @Autowired
+    private FlightSegmentService flightSegmentService;
 
     //Listar todas las aerolineas
     //http://localhost:8080/api/nuevoVuelo/aerolineas
@@ -77,6 +79,27 @@ public class ControllerVuelo {
 
         Map<String, Object> result = new HashMap<>();
         result.put("flightNumber", flightService.getFlightNumber(airlineCode));
+
+        return result;
+    }
+
+    //Retornar el último id segment
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/segmento
+    @GetMapping("nuevoVuelo/aerolineas/segmento")
+    public Map<String, Object> getIdSegmento(){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("segmentNumber", flightSegmentService.getSegmento());
+
+        return result;
+    }
+
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/trayecto
+    @GetMapping("nuevoVuelo/aerolineas/trayecto")
+    public Map<String, Object> getIdTrayecto(){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("journeyNumber", flightSegmentService.getTrayecto());
 
         return result;
     }
@@ -205,7 +228,7 @@ public class ControllerVuelo {
         return result;
     }
 
-    //Dado un AIPORTNAME  traer AIPORT
+    //Dado un AIPORTNAME  traer división
     //http://localhost:8080/api/nuevoVuelo/aerolineas/aiportName_airport?airportName=Lester B. Pearson International Airport
     @GetMapping("nuevoVuelo/aerolineas/aiportName_airport")
     public Map<String, Object> getAiports(@RequestParam String airportName){
@@ -217,6 +240,21 @@ public class ControllerVuelo {
 
         return result;
     }
+
+    //Dado un AIPORTNAME  traer codigo aeropuertp
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/aiportName_aiportCode?airportName=Lester B. Pearson International Airport
+    @GetMapping("nuevoVuelo/aerolineas/aiportName_airportCode")
+    public Map<String, Object> getAiportCode(@RequestParam String airportName){
+
+        logger.info("aiportName recibido: [" + airportName + "]");
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("aiports", airportService.getAirportCode(airportName));
+
+        return result;
+    }
+
+
 
     //Dado un IDPLACE   traer PLACENAME de PLACE
     //http://localhost:8080/api/nuevoVuelo/aerolineas/idPLace_PlaceName?idPlace=CAN
