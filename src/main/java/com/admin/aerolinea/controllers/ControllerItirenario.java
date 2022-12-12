@@ -53,7 +53,7 @@ public class ControllerItirenario {
     }
 
     //Dado un AIRPORTCODE   traer FLIGHTSEGMENT
-    //http://localhost:8080/api/nuevoVuelo/aerolineas/aiportCode_flightSegment?airporCode=YYZ
+    //http://localhost:8080/api/nuevoVuelo/aerolineas/aiportCode_flightSegment?airportCode=YYZ
     @GetMapping("nuevoVuelo/aerolineas/aiportCode_flightSegment")
     public Map<String, Object> getFlightSegments(@RequestParam String airportCode){
 

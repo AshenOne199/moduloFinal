@@ -10,8 +10,10 @@ import lombok.Data;
 public class Connection {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
+    @SequenceGenerator(sequenceName = "id_seq", allocationSize = 1, name = "CUST_SEQ")
     @Column(name = "IDCONEXIONES")
-    private String idConexiones;
+    private Long idConexiones;
 
     @Column(name = "ORIGEN_AIRLINECODESEGMENTFK")
     private String origenAirlineCode;

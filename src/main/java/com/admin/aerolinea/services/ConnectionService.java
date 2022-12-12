@@ -18,8 +18,8 @@ public class ConnectionService {
         this.connectionRepository = connectionRepository;
     }
 
-    public Optional<Connection> findById(String idConexiones) {
-        return connectionRepository.findById(idConexiones);
+    public Optional<Connection> findById(Long idConexiones) {
+        return connectionRepository.findByIds(idConexiones);
     }
 
     public Connection nuevaConexion(Connection connection) {
@@ -28,5 +28,9 @@ public class ConnectionService {
 
     public List<String> findConections(String origenAirlineCode, String origenFlightNumber, String origenAirportCodeDestino, String origenIdSegment) {
         return  connectionRepository.findConnection(origenAirlineCode, origenFlightNumber, origenAirportCodeDestino, origenIdSegment);
+    }
+
+    public String findMaxId() {
+        return connectionRepository.findMaxId();
     }
 }

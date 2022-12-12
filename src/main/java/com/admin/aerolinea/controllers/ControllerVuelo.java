@@ -45,6 +45,9 @@ public class ControllerVuelo {
     @Autowired
     private FlightSegmentService flightSegmentService;
 
+    @Autowired
+    private ConnectionService connectionService;
+
     //Listar todas las aerolineas
     //http://localhost:8080/api/nuevoVuelo/aerolineas
     @GetMapping("nuevoVuelo/aerolineas")
@@ -265,6 +268,17 @@ public class ControllerVuelo {
 
         Map<String, Object> result = new HashMap<>();
         result.put("placeNames", placeService.getPlaceNames(idPlace));
+
+        return result;
+    }
+
+    //Obtener id Maximo de Connection
+    //http://localhost:8081/api/nuevoVuelo/aerolineas/idConnection
+    @GetMapping("nuevoVuelo/aerolineas/idConnection")
+    public Map<String, Object> getIdConnection(){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("placeNames", connectionService.findMaxId());
 
         return result;
     }

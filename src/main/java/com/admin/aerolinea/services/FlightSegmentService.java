@@ -28,7 +28,7 @@ public class FlightSegmentService {
         return flightSegmentRepository.save(flightSegment);
     }
 
-    public List<String> findByAirportCode(String airportCode) {
+    public List<FlightSegment> findByAirportCode(String airportCode) {
         return flightSegmentRepository.findByAiportCode(airportCode);
     }
 

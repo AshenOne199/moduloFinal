@@ -12,20 +12,20 @@ import java.util.Optional;
 @Repository
 public interface IFlightSegmentRepository extends JpaRepository<FlightSegment, FlightSegmentId> {
 
-    @Query(value = "SELECT f FROM FlightSegment f WHERE f.flightSegmentId.idSegment=?1")
+    @Query(value = "SELECT MAX(TO_NUMBER(f.flightSegmentId.idSegment)) FROM FlightSegment f WHERE f.flightSegmentId.idSegment=?1")
     Optional<FlightSegment> findIds(String idSegment);
 
     @Query(value = "SELECT f FROM FlightSegment f WHERE f.aiportCodeOrigen = ?1")
-    List<String> findByAiportCode(String airportCode);
+    List<FlightSegment> findByAiportCode(String airportCode);
 
     @Query(value = "SELECT f FROM FlightSegment f WHERE f.aiportCodeOrigen = ?1 AND f.idTrayecto = ?2")
     List<String> findByAiportCodeAndIdtrayecto(String airportCode, String idTrayecto);
 
     @Query(value = "SELECT f FROM FlightSegment f WHERE f.idTrayecto = ?1")
     List<String> findByIdTrayecto(String idTrayecto);
-    @Query(value = "SELECT max(f.flightSegmentId.idSegment) FROM FlightSegment f")
+    @Query(value = "SELECT MAX(TO_NUMBER(f.flightSegmentId.idSegment)) FROM FlightSegment f")
     String findIdSegmento();
 
-    @Query(value = "SELECT max(f.idTrayecto) FROM FlightSegment f")
+    @Query(value = "SELECT MAX(TO_NUMBER(f.idTrayecto)) FROM FlightSegment f")
     String findIdTrayecto();
 }
